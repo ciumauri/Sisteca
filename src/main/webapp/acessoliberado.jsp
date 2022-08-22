@@ -13,13 +13,13 @@
 		<nav class="navbar navbar-expand-md navbar-dark"
 			style="background-color: tomato">
 			<div>
-				<a href="<%=request.getContextPath()%>" class="navbar-brand">
-					Sisteca </a>
+				<a href="<%=request.getContextPath()%>/acessoliberado.jsp" class="navbar-brand">
+					Início </a>
 			</div>
 
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/userslist.jsp"
-					class="nav-link">Usuários</a></li>
+				<li><a href="<%=request.getContextPath()%>/index.jsp"
+					class="nav-link">Sair</a></li>
 			</ul>
 		</nav>
 	</header>
