@@ -28,40 +28,38 @@
 	<br>
 	<h1>Cadastro de usuário</h1>
 	<h6 style="color: red;">${msg}</h6>
-	<form action="cadastrarUsuario" method="post" id="formUser">
+	<form action="cadastrarUsuario" method="post" id="formUser" class="container">
 		<ul class="form-style-1">
 			<li>
 				<table>
 					<tr>
 						<td>Código:</td>
 						<td><input type="text" readonly="readonly" id="id" name="id"
-							value="${user.id}"></td>
+							value="${user.id}" placeholder="ID usuário"></td>
 					</tr>
 					<tr>
 						<td>Nome:</td>
 						<td><input type="text" id="name" name="name"
-							value="${user.name}"></td>
+							value="${user.name}" placeholder="Informe o nome do usuário"></td>
 					</tr>
 					<tr>
 						<td>Login:</td>
 						<td><input type="text" id="login" name="login"
-							value="${user.login}"></td>
+							value="${user.login}" placeholder="Informe o login do usuário" width="3000px"></td>
 					</tr>
 					<tr>
 						<td>Email:</td>
 						<td><input type="text" id="email" name="email"
-							value="${user.email}"></td>
+							value="${user.email}" placeholder="Informe o email do usuário"></td>
 					</tr>
 					<tr>
 						<td>Senha:</td>
 						<td><input type="password" id="senha" name="senha"
-							value="${user.senha}"></td>
+							value="${user.senha}" placeholder="Informe a senha do usuário"></td>
 					</tr>
 					<tr>
 						<td><input type="submit" value="Salvar"
-							class="btn btn-success"> <input type="submit"
-							value="Cancelar" class="btn btn-danger"
-							onclick="document.getElementById('formUser').action='cadastrarUsuario?action=reset'">
+							class="btn btn-success"> 
 						</td>
 					</tr>
 				</table>
