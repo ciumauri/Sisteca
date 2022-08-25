@@ -10,11 +10,11 @@ import java.util.List;
 import connection.SingleConnection;
 import model.User;
 
-public class DaoUser {
+public class DaoUsers {
 
 	private Connection connection;
 
-	public DaoUser() {
+	public DaoUsers() {
 		connection = SingleConnection.getConnection();
 	}
 

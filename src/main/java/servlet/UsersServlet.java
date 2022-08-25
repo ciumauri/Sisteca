@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.DaoUser;
+import dao.DaoUsers;
 import model.User;
 
 @WebServlet("/cadastrarUsuario")
 public class UsersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private DaoUser daoUser = new DaoUser();
+	private DaoUsers daoUser = new DaoUsers();
 
 	public UsersServlet() {
 		super();
