@@ -21,12 +21,13 @@ public class DaoUsers {
 	public void insertUser(User user) {
 		try {
 
-			String sql = "INSERT INTO users(name, login, email, senha) VALUES (?, ?, ?, ?)";
+			String sql = "INSERT INTO users(name, login, email, password, type) VALUES (?, ?, ?, ?, ?)";
 			PreparedStatement insert = connection.prepareStatement(sql);
 			insert.setString(1, user.getName());
 			insert.setString(2, user.getLogin());
 			insert.setString(3, user.getEmail());
-			insert.setString(4, user.getSenha());
+			insert.setString(4, user.getPassword());
+			insert.setString(5, user.getType());
 			insert.execute();
 			connection.commit();
 
@@ -43,12 +44,13 @@ public class DaoUsers {
 	public void updateUser(User user) {
 		try {
 
-			String sql = "UPDATE users SET name = ?, login = ?, email = ?, senha = ? WHERE id = " + user.getId();
+			String sql = "UPDATE users SET name = ?, login = ?, email = ?, password = ? WHERE id = " + user.getId();
 			PreparedStatement update = connection.prepareStatement(sql);
 			update.setString(1, user.getName());
 			update.setString(2, user.getLogin());
 			update.setString(3, user.getEmail());
-			update.setString(4, user.getSenha());
+			update.setString(4, user.getPassword());
+			update.setString(5,	user.getType());
 			update.executeUpdate();
 			connection.commit();
 
@@ -91,7 +93,8 @@ public class DaoUsers {
 			user.setName(resultSet.getString("name"));
 			user.setLogin(resultSet.getString("login"));
 			user.setEmail(resultSet.getString("email"));
-			user.setSenha(resultSet.getString("senha"));
+			user.setPassword(resultSet.getString("password"));
+			user.setType(resultSet.getString("type"));
 
 			return user;
 		}
@@ -111,7 +114,8 @@ public class DaoUsers {
 			user.setName(resultSet.getString("name"));
 			user.setLogin(resultSet.getString("login"));
 			user.setEmail(resultSet.getString("email"));
-			user.setSenha(resultSet.getString("senha"));
+			user.setPassword(resultSet.getString("password"));
+			user.setType(resultSet.getString("type"));
 
 			usersList.add(user);
 		}
@@ -145,8 +149,8 @@ public class DaoUsers {
 		return false;
 	}
 
-	public boolean validadePass(String senha) {
-		if (senha.length() < 6) {
+	public boolean validadePass(String password) {
+		if (password.length() < 6) {
 			return false;
 		} else
 			return true;

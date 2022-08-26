@@ -81,14 +81,16 @@ public class UsersServlet extends HttpServlet {
 			String name = request.getParameter("name");
 			String login = request.getParameter("login");
 			String email = request.getParameter("email");
-			String senha = request.getParameter("senha");
+			String password = request.getParameter("password");
+			String type = request.getParameter("type");
 
 			User user = new User();
 			user.setId(!id.isEmpty() ? Long.parseLong(id) : null);
 			user.setName(name);
 			user.setLogin(login);
 			user.setEmail(email);
-			user.setSenha(senha);
+			user.setPassword(password);
+			user.setType(type);
 
 			try {
 
@@ -111,13 +113,13 @@ public class UsersServlet extends HttpServlet {
 					msg = "Já existe um usuário cadastrado com este login!";
 					canInsert = false;
 
-				} else if (id == null || id.isEmpty() && !daoUser.validadePass(senha)) {// NeW user
+				} else if (id == null || id.isEmpty() && !daoUser.validadePass(password)) {// NeW user
 					msg = "\n A senha precisa conter pelo menos 6 dígitos!";
 					canInsert = false;
 				}
 
 				else if (id == null
-						|| id.isEmpty() && daoUser.validateLogin(login) && canInsert && daoUser.validadePass(senha)) {
+						|| id.isEmpty() && daoUser.validateLogin(login) && canInsert && daoUser.validadePass(password)) {
 
 					daoUser.insertUser(user);
 					msg = "Usuário cadastrado com sucesso!";
@@ -128,7 +130,7 @@ public class UsersServlet extends HttpServlet {
 					if (!daoUser.validateLoginUpdate(login, id)) {
 						msg = "Já existe um usuário cadastrado com este login!";
 						canInsert = false;
-					} else if (id != null && !id.isEmpty() && !daoUser.validadePass(senha)) {
+					} else if (id != null && !id.isEmpty() && !daoUser.validadePass(password)) {
 						msg = "\n A senha precisa conter pelo menos 6 dígitos!";
 						canInsert = false;
 

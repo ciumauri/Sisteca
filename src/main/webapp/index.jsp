@@ -27,8 +27,8 @@
 					</div>
 					<div class="field">
 						<div class="control">
-							<input type="password" placeholder="senha" name="senha"
-								id="senha" class="input is-medium is-rounded" />
+							<input type="password" placeholder="senha" name="password"
+								id="password" class="input is-medium is-rounded" />
 						</div>
 					</div>
 					<button

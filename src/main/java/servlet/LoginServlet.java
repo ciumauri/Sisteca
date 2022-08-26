@@ -30,9 +30,9 @@ public class LoginServlet extends HttpServlet {
 		try {
 			
 			String login = request.getParameter("login");
-			String senha = request.getParameter("senha");
+			String password = request.getParameter("password");
 
-			if (daoLogin.validarLogin(login, senha)) {// Acesso Liberado
+			if (daoLogin.validarLogin(login, password)) {// Acesso Liberado
 				RequestDispatcher dispatcher = request.getRequestDispatcher("acessoliberado.jsp");
 				dispatcher.forward(request, response);
 			} else {// Acesso Negado

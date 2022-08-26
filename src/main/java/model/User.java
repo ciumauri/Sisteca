@@ -6,7 +6,8 @@ public class User {
 	private String name;
 	private String login;
 	private String email;
-	private String senha;
+	private String password;
+	private String type;
 
 	public Long getId() {
 		return id;
@@ -40,12 +41,20 @@ public class User {
 		this.email = email;
 	}
 
-	public String getSenha() {
-		return senha;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

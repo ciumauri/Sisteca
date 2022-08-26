@@ -58,9 +58,7 @@
 	<section class="section">
 		<div class="section-heading">
 			<p class="title is-2">Cadastro de Usuário</p>
-			<p class="title is-4">
-				Preencha os campos solicitados abaixo
-			</p>
+			<p class="title is-4">Preencha os campos solicitados abaixo</p>
 		</div>
 		<br>
 		<h6 class="section-heading" style="color: red;">${msg}</h6>
@@ -85,23 +83,39 @@
 						</div>
 						<div class="field">
 							<label for="login" class="label">login</label>
-							<div class="control">
+							<div class="control has-icons-left has-icons-right">
 								<input type="text" name=login class="input" id="login"
-									value="${user.login}" placeholder="insira um login">
+									value="${user.login}" placeholder="insira um login"> <span
+									class="icon is-small is-left"> <i class="fa fa-user"></i>
+								</span>
 							</div>
 						</div>
 						<div class="field">
 							<label for="email" class="label">email</label>
-							<div class="control">
+							<div class="control has-icons-left has-icons-right">
 								<input type="email" name=email class="input" id="email"
-									value="${user.email}" placeholder="insira um email">
+									value="${user.email}" placeholder="insira um email"> <span
+									class="icon is-small is-left"> <i class="fa fa-envelope"></i>
+								</span>
 							</div>
 						</div>
 						<div class="field">
-							<label for="senha" class="label">senha</label>
+							<label for="password" class="label">senha</label>
+							<div class="control has-icons-left has-icons-right">
+								<input type="password" name=password class="input" id="password"
+									value="${user.password}" placeholder="insira uma senha">
+								<span class="icon is-small is-left"> <i class="fa fa-key"></i>
+								</span>
+							</div>
+						</div>
+						<div>
 							<div class="control">
-								<input type="password" name=senha class="input" id="senha"
-									value="${user.senha}" placeholder="insira uma senha">
+								<label for="text" class="label">tipo</label> <label
+									class="radio"> <input type="radio" name="type"
+									value="Administrador"> Administrador
+								</label> <label class="radio"> <input type="radio" name="type"
+									id="type" value="Colaborador"> Colaborador
+								</label>
 							</div>
 						</div>
 						<br>
@@ -111,14 +125,14 @@
 									class="button is-small is-info is-outlined"> <input
 									type="submit" value="Cancelar"
 									class="button is-small is-danger is-outlined"
-									onclick="document.getElementById('formUser').action='cadastrarUsuario?action=reset'" style="margin-left: 20px">
+									onclick="document.getElementById('formUser').action='cadastrarUsuario?action=reset'"
+									style="margin-left: 20px">
 							</div>
 						</div>
 					</div>
 				</form>
 			</div>
 		</div>
-
 		<div class="hero">
 			<div class="hero-body-full">
 				<table
