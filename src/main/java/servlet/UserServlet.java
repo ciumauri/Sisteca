@@ -9,16 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.DaoUsers;
+import dao.DaoUser;
 import model.User;
 
 @WebServlet("/cadastrarUsuario")
-public class UsersServlet extends HttpServlet {
+public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private DaoUsers daoUser = new DaoUsers();
+	private DaoUser daoUser = new DaoUser();
 
-	public UsersServlet() {
+	public UserServlet() {
 		super();
 	}
 
@@ -30,12 +30,18 @@ public class UsersServlet extends HttpServlet {
 
 			String action = request.getParameter("action");
 			String user = request.getParameter("user");
+			String type = request.getParameter("type");
 
 			if (action.equalsIgnoreCase("deleteUser")) {
 				daoUser.deleteUser(user);
 				RequestDispatcher view = request.getRequestDispatcher("/cadastrousuario.jsp");
 				request.setAttribute("users", daoUser.selectAllUsers());
-				request.setAttribute("msg", "Usuário deletado com sucesso!");
+				
+				if (type.equalsIgnoreCase("administrador")) {
+					request.setAttribute("msg", "Usuário não pode ser excluído!");
+				} else {
+					request.setAttribute("msg", "Usuário excluído com sucesso!");
+				}
 				view.forward(request, response);
 
 			} else if (action.equalsIgnoreCase("updateUser")) {
@@ -93,12 +99,12 @@ public class UsersServlet extends HttpServlet {
 			user.setType(type);
 
 			try {
-
+				System.out.println(type);
 				String msg = null;
 				boolean canInsert = true;
 
 				if (name == null || name.isEmpty()) {
-					msg = "O Nome deve ser informado";
+					msg = "O nome deve ser informado";
 					canInsert = false;
 
 				} else if (login == null || login.isEmpty()) {
@@ -118,14 +124,14 @@ public class UsersServlet extends HttpServlet {
 					canInsert = false;
 				}
 
-				else if (id == null
-						|| id.isEmpty() && daoUser.validateLogin(login) && canInsert && daoUser.validadePass(password)) {
+				else if (id == null || id.isEmpty() && daoUser.validateLogin(login) && canInsert
+						&& daoUser.validadePass(password)) {
 
 					daoUser.insertUser(user);
 					msg = "Usuário cadastrado com sucesso!";
 
 				}
-
+				
 				else if (id != null && !id.isEmpty()) {
 					if (!daoUser.validateLoginUpdate(login, id)) {
 						msg = "Já existe um usuário cadastrado com este login!";
@@ -133,11 +139,15 @@ public class UsersServlet extends HttpServlet {
 					} else if (id != null && !id.isEmpty() && !daoUser.validadePass(password)) {
 						msg = "\n A senha precisa conter pelo menos 6 dígitos!";
 						canInsert = false;
+						
+					} else if (type.equalsIgnoreCase("administrador")) {
+						msg = "Usuário não pode ser atualizado!";
+						
 
 					} else {
-
 						daoUser.updateUser(user);
 						msg = "Usuário atualizado com sucesso!";
+						
 					}
 				}
 

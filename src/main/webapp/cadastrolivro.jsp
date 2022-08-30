@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 
 <%@page import="java.sql.DriverManager"%>
-<%@page import="model.User, java.util.List"%>
+<%@page import="model.Book, java.util.List"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -35,7 +35,7 @@
 				<div id="topNav" class="navbar-menu">
 					<div class="navbar-start">
 						<a href="<%=request.getContextPath()%>/acessoliberado.jsp"
-							class="navbar-item"> <span class="fs-4">Início</span>
+							class="navbar-item"> <span class="fs-4">Inicio</span>
 						</a>
 					</div>
 					<div class="navbar-end">
@@ -57,81 +57,63 @@
 	</header>
 	<section class="section">
 		<div class="section-heading">
-			<p class="title is-2">Cadastro de Usuário</p>
+			<p class="title is-2">Cadastro de Livros</p>
 			<p class="title is-4">Preencha os campos solicitados abaixo</p>
 		</div>
 		<br>
 		<h6 class="section-heading" style="color: red;">${msg}</h6>
 		<div class="hero">
 			<div class="hero-body-full">
-				<form action="cadastrarUsuario" method="post" id="formUser">
+				<form action="cadastrarLivro" method="post" id="formBook">
 					<div class="box">
 						<div class="field">
 							<label for="id" class="label">#id</label>
 							<div class="control">
 								<input type="number" name="id" class="input" id="id"
-									value="${user.id}" readonly placeholder="id usuário"
+									value="${book.id}" readonly placeholder="id livro"
 									style="background-color: #f5f5f5">
 							</div>
 						</div>
 						<div class="field">
-							<label for="name" class="label">nome</label>
-							<div class="control">
+							<label for="name" class="label">titulo</label>
+							<div class="control has-icons-left has-icons-right">
 								<input type="text" name=name class="input" id="name"
-									value="${user.name}" placeholder="insira um nome">
-							</div>
-						</div>
-						<div class="field">
-							<label for="login" class="label">login</label>
-							<div class="control has-icons-left has-icons-right">
-								<input type="text" name=login class="input" id="login"
-									value="${user.login}" placeholder="insira um login"> <span
-									class="icon is-small is-left"> <i class="fa fa-user"></i>
+									value="${book.name}" placeholder="insira nome do livro">
+								<span class="icon is-small is-left"> <i
+									class="fa fa-book"></i>
 								</span>
 							</div>
 						</div>
 						<div class="field">
-							<label for="email" class="label">email</label>
+							<label for="author" class="label">autor</label>
 							<div class="control has-icons-left has-icons-right">
-								<input type="email" name=email class="input" id="email"
-									value="${user.email}" placeholder="insira um email"> <span
-									class="icon is-small is-left"> <i class="fa fa-envelope"></i>
+								<input type="text" name="author" class="input" id="author"
+									value="${book.author}" placeholder="insira autor do livro">
+								<span class="icon is-small is-left"> <i
+									class="fa fa-user"></i>
+								</span>
+							</div>						
+						<div class="field">
+							<label for="date" class="label">data criacao</label>
+							<div class="control has-icons-left has-icons-right">
+								<input type="date" name=date class="input" id="date"
+									value="${book.date}" placeholder="insira uma data"> <span
+									class="icon is-small is-left"> <i class="fa fa-calendar"></i>
 								</span>
 							</div>
 						</div>
 						<div class="field">
-							<label for="password" class="label">senha</label>
-							<div class="control has-icons-left has-icons-right">
-								<input type="password" name=password class="input" id="password"
-									value="${user.password}" placeholder="insira uma senha">
-								<span class="icon is-small is-left"> <i class="fa fa-key"></i>
-								</span>
-							</div>
-						</div>
-						<div class="field">
-							<label class="label">tipo</label>
+							<label class="label">status</label>
 							<div class="control">
 								<div class="select">
-									<select id="type" name="type" style="width: 260px">
-										<option>Selecione o tipo</option>
-										<option value="administrador"
-											<%if (request.getAttribute("user") != null) {
-											User user = (User) request.getAttribute("user");
-												if (user.getType().equalsIgnoreCase("administrador")) {
-													out.print(" ");
-													out.print("selected=\"selected\"");
-													out.print(" ");
-												}
-											}%>>Administrador</option>
-										<option value="colaborador"
-										<%if (request.getAttribute("user") != null) {
-											User user = (User) request.getAttribute("user");
-												if (user.getType().equalsIgnoreCase("colaborador")) {
-													out.print(" ");
-													out.print("selected=\"selected\"");
-													out.print(" ");
-												}
-											}%>>Colaborador</option>
+									<select id="status" name="status" style="width: 260px">
+										<option>Selecione o status</option>
+										<option value="disponivel"
+											${book.status == "disponivel" ? "selected" : ""}>Disponivel</option>
+										<option value="emprestado"
+											${book.status == "emprestado" ? "selected" : ""}>Emprestado</option>
+										<option value="indisponivel"
+											${book.status == "indisponivel" ? "selected" : ""}>Indisponivel</option>
 									</select>
 								</div>
 							</div>
@@ -143,7 +125,7 @@
 									class="button is-small is-info is-outlined"> <input
 									type="submit" value="Cancelar"
 									class="button is-small is-danger is-outlined"
-									onclick="document.getElementById('formUser').action='cadastrarUsuario?action=reset'"
+									onclick="document.getElementById('formBook').action='cadastrarLivro?action=reset'"
 									style="margin-left: 20px">
 							</div>
 						</div>
@@ -160,24 +142,26 @@
 						<tr>
 							<th>#id</th>
 							<th>nome</th>
-							<th>login</th>
-							<th>email</th>
-							<th>tipo</th>
-							<th>opções</th>
+							<th>autor</th>
+							<th>data criacao</th>
+							<th>status</th>
+							<th>opcoes</th>
 						</tr>
 					</thead>
-					<c:forEach items="${users}" var="user">
+					<c:forEach items="${books}" var="book">
 						<tr>
-							<td><c:out value="${user.id}"></c:out></td>
-							<td><c:out value="${user.name}"></c:out></td>
-							<td><c:out value="${user.login}"></c:out></td>
-							<td><c:out value="${user.email}"></c:out></td>
-							<td><c:out value="${user.type}"></c:out></td>
+							<td><c:out value="${book.id}"></c:out></td>
+							<td><c:out value="${book.name}"></c:out></td>
+							<td><c:out value="${book.author}"></c:out></td>							
+							<td><c:out value="${book.date}"></c:out></td>
+							<td><c:out value="${book.status}"></c:out></td>
+
+							
 							<td>
 								<div class="is-grouped-multiline align-buttons">
 									<div class="control space-intern">
 										<a
-											href="cadastrarUsuario?action=updateUser&user=${user.id}&type=${user.type}"
+											href="cadastrarLivro?action=updateBook&book=${book.id}&type=${book.status}"
 											class="button is-small is-info is-outlined"> <span
 											class="icon"> <i class="fa fa-pencil-square-o"></i>
 										</span> <span>Editar</span>
@@ -186,8 +170,9 @@
 
 									<div class="control">
 										<a
-											href="cadastrarUsuario?action=deleteUser&user=${user.id}&type=${user.type}"
-											class="button is-small is-danger is-outlined" onclick="return confirm('Confirmar Exclusão?');"> <span
+											href="cadastrarLivro?action=deleteBook&book=${book.id}&type=${book.status}"
+											class="button is-small is-danger is-outlined"
+											onclick="return confirm('Confirmar Exclusï¿½o?');"> <span
 											class="icon"> <i class="fa fa-trash-o"></i>
 										</span> <span>Deletar</span>
 										</a>

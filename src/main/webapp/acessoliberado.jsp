@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Cadastro de usuário</title>
+<title>Sisteca - Sistema de Biblioteca</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link
@@ -74,7 +74,7 @@
 		</div>
 
 		<div class="control">
-			<a href="salvarUsuario?action=selectAllUsers" class="btn btn-success">
+			<a href="cadastrarLivro?action=selectAllBooks" class="btn btn-success">
 				<img alt="Cadastrar Livro" src="assets/img/add_book.png"
 				title="Cadastrar Livro" class="image is-128x128 is-rounded">
 			</a>

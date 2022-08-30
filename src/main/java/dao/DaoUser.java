@@ -10,11 +10,11 @@ import java.util.List;
 import connection.SingleConnection;
 import model.User;
 
-public class DaoUsers {
+public class DaoUser {
 
 	private Connection connection;
 
-	public DaoUsers() {
+	public DaoUser() {
 		connection = SingleConnection.getConnection();
 	}
 
@@ -44,7 +44,7 @@ public class DaoUsers {
 	public void updateUser(User user) {
 		try {
 
-			String sql = "UPDATE users SET name = ?, login = ?, email = ?, password = ? WHERE id = " + user.getId();
+			String sql = "UPDATE users SET name = ?, login = ?, email = ?, password = ?, type = ? WHERE id = '" + user.getId() + "'AND type <> 'administrador'"; 
 			PreparedStatement update = connection.prepareStatement(sql);
 			update.setString(1, user.getName());
 			update.setString(2, user.getLogin());
@@ -67,7 +67,7 @@ public class DaoUsers {
 	public void deleteUser(String id) {
 		try {
 
-			String sql = "DELETE FROM users WHERE id = '" + id + "'";
+			String sql = "DELETE FROM users WHERE id = '" + id + "' AND type <> 'administrador'";
 			PreparedStatement delete = connection.prepareStatement(sql);
 			delete.execute();
 			connection.commit();
