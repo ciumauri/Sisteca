@@ -10,7 +10,6 @@ import java.util.List;
 
 import connection.SingleConnection;
 import enums.BookStatus;
-import model.Author;
 import model.Book;
 
 public class DaoBook {
@@ -27,7 +26,7 @@ public class DaoBook {
 			String sql = "INSERT INTO books(name, author, date, status) VALUES (?, ?, ?, ?)";
 			PreparedStatement insert = connection.prepareStatement(sql);
 			insert.setString(1, book.getName());
-			insert.setString(2, book.getAuthor().getName());
+			insert.setString(2, book.getAuthor());
 			insert.setString(3, book.getDate().toString());
 			insert.setString(4, book.getStatus().toString());
 			insert.execute();
@@ -46,10 +45,10 @@ public class DaoBook {
 	public void updateBook(Book book) {
 		try {
 
-			String sql = "UPDATE books SET name = ?, author = ?, date = ?, status = ? WHERE id = '" + book.getId() + "'";
+			String sql = "UPDATE books SET name = ?, author = ?, date = ?, status = ? WHERE id = " + book.getId();
 			PreparedStatement update = connection.prepareStatement(sql);
 			update.setString(1, book.getName());
-			update.setString(2, book.getAuthor().getName());
+			update.setString(2, book.getAuthor());
 			update.setString(3, book.getDate().toString());
 			update.setString(4, book.getStatus().toString());
 			update.executeUpdate();
@@ -68,7 +67,7 @@ public class DaoBook {
 	public void deleteBook(String id) {
 		try {
 
-			String sql = "DELETE FROM books WHERE id = '" + id + "'";
+			String sql = "DELETE FROM books WHERE id = '" + id + "' AND STATUS = 'indisponivel'";
 			PreparedStatement delete = connection.prepareStatement(sql);
 			delete.execute();
 			connection.commit();
@@ -92,7 +91,7 @@ public class DaoBook {
 			Book book = new Book();
 			book.setId(resultSet.getLong("id"));
 			book.setName(resultSet.getString("name"));
-			book.setAuthor(new Author(resultSet.getString("author")));
+			book.setAuthor(resultSet.getString("author"));
 			book.setDate(LocalDate.parse(resultSet.getString("date")));
 			book.setStatus(BookStatus.valueOf(resultSet.getString("status")));
 
@@ -111,11 +110,11 @@ public class DaoBook {
 		while (resultSet.next()) {
 			Book book = new Book();
 			book.setId(resultSet.getLong("id"));
-			book.setName(resultSet.getString("name"));
-			book.setAuthor(new Author(resultSet.getString("author")));			
+			book.setName(resultSet.getString("name"));	
+			book.setAuthor(resultSet.getString("author"));
 			book.setDate(LocalDate.parse(resultSet.getString("date")));
-			book.setStatus(BookStatus.valueOf(resultSet.getString("status")));
-
+			book.setStatus(BookStatus.valueOf(resultSet.getString("status")));			
+					
 			booksList.add(book);
 		}
 

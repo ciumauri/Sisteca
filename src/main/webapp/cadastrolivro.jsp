@@ -130,7 +130,9 @@
 							</div>
 						</div>
 					</div>
+					</div>
 				</form>
+
 			</div>
 		</div>
 
@@ -161,7 +163,7 @@
 								<div class="is-grouped-multiline align-buttons">
 									<div class="control space-intern">
 										<a
-											href="cadastrarLivro?action=updateBook&book=${book.id}&type=${book.status}"
+											href="cadastrarLivro?action=updateBook&book=${book.id}&status=${book.status}"
 											class="button is-small is-info is-outlined"> <span
 											class="icon"> <i class="fa fa-pencil-square-o"></i>
 										</span> <span>Editar</span>
@@ -170,9 +172,9 @@
 
 									<div class="control">
 										<a
-											href="cadastrarLivro?action=deleteBook&book=${book.id}&type=${book.status}"
+											href="cadastrarLivro?action=deleteBook&book=${book.id}&status=${book.status}"
 											class="button is-small is-danger is-outlined"
-											onclick="return confirm('Confirmar Exclusï¿½o?');"> <span
+											onclick="return confirm('Confirmar Exclusão?');"> <span
 											class="icon"> <i class="fa fa-trash-o"></i>
 										</span> <span>Deletar</span>
 										</a>

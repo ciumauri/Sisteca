@@ -45,7 +45,7 @@ public class UserServlet extends HttpServlet {
 				view.forward(request, response);
 
 			} else if (action.equalsIgnoreCase("updateUser")) {
-
+				
 				User userSelect = daoUser.selectUser(user);
 
 				RequestDispatcher view = request.getRequestDispatcher("/cadastrousuario.jsp");
@@ -99,7 +99,7 @@ public class UserServlet extends HttpServlet {
 			user.setType(type);
 
 			try {
-				System.out.println(type);
+				
 				String msg = null;
 				boolean canInsert = true;
 
@@ -126,7 +126,6 @@ public class UserServlet extends HttpServlet {
 
 				else if (id == null || id.isEmpty() && daoUser.validateLogin(login) && canInsert
 						&& daoUser.validadePass(password)) {
-
 					daoUser.insertUser(user);
 					msg = "Usuário cadastrado com sucesso!";
 

@@ -4,7 +4,7 @@ public class Author {
 
 	private String id;
 
-	private String name;
+	private String nameAuthor;
 
 	public Author(String string) {
 		super();
@@ -22,17 +22,17 @@ public class Author {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNameAuthor() {
+		return nameAuthor;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
+	public void setNameAuthor(String nameAuthor) {
+		this.nameAuthor = nameAuthor;
+	}	
 
 	@Override
 	public String toString() {
-		return "Author [id=" + id + ", name=" + name + "]";
+		return "Author [id=" + id + ", name=" + nameAuthor + "]";
 	}
 
 }

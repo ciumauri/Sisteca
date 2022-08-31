@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.DaoBook;
 import enums.BookStatus;
-import model.Author;
 import model.Book;
 
 @WebServlet("/cadastrarLivro")
@@ -36,13 +35,13 @@ public class BookServlet extends HttpServlet {
 			String status = request.getParameter("status");
 
 			if (action.equalsIgnoreCase("deleteBook")) {
-				daoBook.deleteBook(status);
+				daoBook.deleteBook(book);
 				RequestDispatcher view = request.getRequestDispatcher("/cadastrolivro.jsp");
 				request.setAttribute("books", daoBook.selectAllBooks());	
 				
 				System.out.println(status);
-				if (status.equalsIgnoreCase("disponivel")) {
-					request.setAttribute("msg", "Livro não pode ser excluído!");
+				if (status.equalsIgnoreCase("disponivel") || status.equalsIgnoreCase("emprestado")) {
+					request.setAttribute("msg", "Este livro não pode ser excluído!");
 				} else {
 					request.setAttribute("msg", "Livro excluído com sucesso!");
 				}
@@ -93,64 +92,50 @@ public class BookServlet extends HttpServlet {
 			LocalDate date = LocalDate.parse(request.getParameter("date"));
 			String status = request.getParameter("status");
 				
-
 			Book book = new Book();
 			book.setId(!id.isEmpty() ? Long.parseLong(id) : null);
 			book.setName(name);
-			book.setAuthor(new Author(author));
+			book.setAuthor(author);								
 			book.setDate(date);
 			book.setStatus(BookStatus.valueOf(status));
-
 			
 			try {
 				
 				String msg = null;
 				boolean canInsert = true;
 
-				if (name == null || name.isEmpty()) {
-					
+				if (name == null || name.isEmpty()) {					
 					msg = "O nome do livro deve ser informado";
 					canInsert = false;
 
-				} else if (author == null) {
-					
+				} else if (author == null || author.isEmpty()) {					
 					msg = "O autor do livro deve ser informado";
 					canInsert = false;
-					
+
 				} else if (date == null) {
-					
 					msg = "A data de publicação do livro deve ser informada";
 					canInsert = false;
-					
 				} else if (status == null || status.isEmpty()) {
-					
 					msg = "O status do livro deve ser informado";
-					canInsert = false;									
+					canInsert = false;										
 
-				} else if (id == null || id.isEmpty() && !daoBook.validateBook(name)) {// NeW user
-					
+				} else if (id == null || id.isEmpty() && !daoBook.validateBook(name)) {// NeW Book					
 					msg = "Já existe um livro cadastrado com este nome!";
 					canInsert = false;
 
 				} else if (id == null || id.isEmpty() && daoBook.validateBook(name) && canInsert) {
-
 					daoBook.insertBook(book);
 					msg = "Livro cadastrado com sucesso!";
-
 				}
 				
 				else if (id != null && !id.isEmpty()) {
 					if (!daoBook.validateBookUpdate(name, id)) {
 						msg = "Já existe um livro cadastrado com este nome!";
 						canInsert = false;
-					} else if (status.equalsIgnoreCase("indisponivel")) {
-						msg = "Este livro não pode ser atualizado!";
 						
-
 					} else {
 						daoBook.updateBook(book);
-						msg = "Livro atualizado com sucesso!";
-						
+						msg = "Livro atualizado com sucesso!";						
 					}
 				}
 
@@ -163,7 +148,7 @@ public class BookServlet extends HttpServlet {
 				}
 
 				RequestDispatcher view = request.getRequestDispatcher("/cadastrolivro.jsp");
-				request.setAttribute("users", daoBook.selectAllBooks());
+				request.setAttribute("books", daoBook.selectAllBooks());
 				view.forward(request, response);
 
 			} catch (Exception e) {

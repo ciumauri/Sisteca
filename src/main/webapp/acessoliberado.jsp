@@ -68,14 +68,14 @@
 		<div class="control space-intern">
 			<a href="cadastrarUsuario?action=selectAllUsers"
 				class="btn btn-success"> <img alt="Cadastrar Usuário"
-				src="assets/img/add_user.png" title="Cadastrar Usuário"
-				class="image is-128x128 is-rounded">
+				src="assets/img/user_add.png" title="Cadastrar Usuário"
+				class="image is-128x128 is-rounded" style="margin-right: 50px">
 			</a>
 		</div>
 
 		<div class="control">
 			<a href="cadastrarLivro?action=selectAllBooks" class="btn btn-success">
-				<img alt="Cadastrar Livro" src="assets/img/add_book.png"
+				<img alt="Cadastrar Livro" src="assets/img/book_add.png"
 				title="Cadastrar Livro" class="image is-128x128 is-rounded">
 			</a>
 		</div>
