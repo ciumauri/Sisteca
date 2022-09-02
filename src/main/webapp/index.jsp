@@ -22,17 +22,17 @@
 					<div class="field">
 						<div class="control">
 							<input type="text" placeholder="usuário" name="login" id="login"
-								class="input is-medium is-rounded" />
+								class="input is-medium is-rounded" required>
 						</div>
 					</div>
 					<div class="field">
 						<div class="control">
 							<input type="password" placeholder="senha" name="password"
-								id="password" class="input is-medium is-rounded" />
+								id="password" class="input is-medium is-rounded" required>
 						</div>
 					</div>
 					<button
-						class="button is-block is-fullwidth is-primary is-medium is-rounded">login</button>
+						class="button is-block is-fullwidth is-primary is-medium is-rounded">Login</button>
 				</form>
 				<br>
 			</div>

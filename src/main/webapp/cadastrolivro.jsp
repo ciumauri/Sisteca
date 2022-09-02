@@ -25,7 +25,7 @@
 		<nav class="navbar is-white topNav">
 			<div class="container">
 				<div class="navbar-brand">
-					<a class="navbar-item" href="../"> <img
+					<a class="navbar-item" href="/Sisteca"> <img
 						src="assets\img\logo_sisteca.png" width="112" height="50">
 					</a>
 					<div class="navbar-burger burger" data-target="topNav">
@@ -78,7 +78,7 @@
 							<label for="name" class="label">titulo</label>
 							<div class="control has-icons-left has-icons-right">
 								<input type="text" name=name class="input" id="name"
-									value="${book.name}" placeholder="insira nome do livro">
+									value="${book.name}" placeholder="insira nome do livro" required>
 								<span class="icon is-small is-left"> <i
 									class="fa fa-book"></i>
 								</span>
@@ -88,7 +88,7 @@
 							<label for="author" class="label">autor</label>
 							<div class="control has-icons-left has-icons-right">
 								<input type="text" name="author" class="input" id="author"
-									value="${book.author}" placeholder="insira autor do livro">
+									value="${book.author}" placeholder="insira autor do livro" required>
 								<span class="icon is-small is-left"> <i
 									class="fa fa-user"></i>
 								</span>
@@ -97,7 +97,7 @@
 							<label for="date" class="label">data criacao</label>
 							<div class="control has-icons-left has-icons-right">
 								<input type="date" name=date class="input" id="date"
-									value="${book.date}" placeholder="insira uma data"> <span
+									value="${book.date}" required> <span
 									class="icon is-small is-left"> <i class="fa fa-calendar"></i>
 								</span>
 							</div>
@@ -106,8 +106,8 @@
 							<label class="label">status</label>
 							<div class="control">
 								<div class="select">
-									<select id="status" name="status" style="width: 260px">
-										<option>Selecione o status</option>
+									<select id="status" name="status" style="width: 260px" required>
+										<option value="">[--Selecione--]</option>
 										<option value="disponivel"
 											${book.status == "disponivel" ? "selected" : ""}>Disponivel</option>
 										<option value="emprestado"

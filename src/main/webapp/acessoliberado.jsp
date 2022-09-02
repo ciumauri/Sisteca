@@ -25,7 +25,7 @@
 		<nav class="navbar is-white topNav">
 			<div class="container">
 				<div class="navbar-brand">
-					<a class="navbar-item" href="../"> <img
+					<a class="navbar-item" href="/Sisteca"> <img
 						src="assets\img\logo_sisteca.png" width="112" height="50">
 					</a>
 					<div class="navbar-burger burger" data-target="topNav">

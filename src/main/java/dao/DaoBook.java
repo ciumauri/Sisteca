@@ -49,7 +49,7 @@ public class DaoBook {
 			PreparedStatement update = connection.prepareStatement(sql);
 			update.setString(1, book.getName());
 			update.setString(2, book.getAuthor());
-			update.setString(3, book.getDate().toString());
+			update.setString(3, book.getDate().toString());			
 			update.setString(4, book.getStatus().toString());
 			update.executeUpdate();
 			connection.commit();

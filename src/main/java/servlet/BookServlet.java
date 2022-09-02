@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -40,7 +39,7 @@ public class BookServlet extends HttpServlet {
 				RequestDispatcher view = request.getRequestDispatcher("/cadastrolivro.jsp");
 				request.setAttribute("books", daoBook.selectAllBooks());
 
-				System.out.println(status);
+				
 				if (status.equalsIgnoreCase("disponivel") || status.equalsIgnoreCase("emprestado")) {
 					request.setAttribute("msg", "Este livro não pode ser excluído!");
 				} else {

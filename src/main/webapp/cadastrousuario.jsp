@@ -25,7 +25,7 @@
 		<nav class="navbar is-white topNav">
 			<div class="container">
 				<div class="navbar-brand">
-					<a class="navbar-item" href="../"> <img
+					<a class="navbar-item" href="/Sisteca"> <img
 						src="assets\img\logo_sisteca.png" width="112" height="50">
 					</a>
 					<div class="navbar-burger burger" data-target="topNav">
@@ -64,7 +64,7 @@
 		<h6 class="section-heading" style="color: red;">${msg}</h6>
 		<div class="hero">
 			<div class="hero-body-full">
-				<form action="cadastrarUsuario" method="post" id="formUser">
+				<form action="cadastrarUsuario" method="post" id="formUser" name="formUser">
 					<div class="box">
 						<div class="field">
 							<label for="id" class="label">#id</label>
@@ -78,14 +78,14 @@
 							<label for="name" class="label">nome</label>
 							<div class="control">
 								<input type="text" name=name class="input" id="name"
-									value="${user.name}" placeholder="insira um nome">
+									value="${user.name}" placeholder="insira um nome" required>
 							</div>
 						</div>
 						<div class="field">
 							<label for="login" class="label">login</label>
 							<div class="control has-icons-left has-icons-right">
 								<input type="text" name=login class="input" id="login"
-									value="${user.login}" placeholder="insira um login"> <span
+									value="${user.login}" placeholder="insira um login" required> <span
 									class="icon is-small is-left"> <i class="fa fa-user"></i>
 								</span>
 							</div>
@@ -94,7 +94,7 @@
 							<label for="email" class="label">email</label>
 							<div class="control has-icons-left has-icons-right">
 								<input type="email" name=email class="input" id="email"
-									value="${user.email}" placeholder="insira um email"> <span
+									value="${user.email}" placeholder="insira um email" required> <span
 									class="icon is-small is-left"> <i class="fa fa-envelope"></i>
 								</span>
 							</div>
@@ -103,7 +103,7 @@
 							<label for="password" class="label">senha</label>
 							<div class="control has-icons-left has-icons-right">
 								<input type="password" name=password class="input" id="password"
-									value="${user.password}" placeholder="insira uma senha">
+									value="${user.password}" placeholder="insira uma senha" required>
 								<span class="icon is-small is-left"> <i class="fa fa-key"></i>
 								</span>
 							</div>
@@ -112,17 +112,8 @@
 							<label class="label">tipo</label>
 							<div class="control">
 								<div class="select">
-									<select id="type" name="type" style="width: 260px">
-										<option>Selecione o tipo</option>
-										<option value="administrador"
-											<%if (request.getAttribute("user") != null) {
-											User user = (User) request.getAttribute("user");
-												if (user.getType().equalsIgnoreCase("administrador")) {
-													out.print(" ");
-													out.print("selected=\"selected\"");
-													out.print(" ");
-												}
-											}%>>Administrador</option>
+									<select id="type" name="type" style="width: 260px" required="required">
+										<option value="">[--Selecione--]</option>
 										<option value="colaborador"
 										<%if (request.getAttribute("user") != null) {
 											User user = (User) request.getAttribute("user");
@@ -132,15 +123,23 @@
 													out.print(" ");
 												}
 											}%>>Colaborador</option>
+										<option value="administrador"
+											<%if (request.getAttribute("user") != null) {
+											User user = (User) request.getAttribute("user");
+												if (user.getType().equalsIgnoreCase("administrador")) {
+													out.print(" ");
+													out.print("selected=\"selected\"");
+													out.print(" ");
+												}
+											}%>>Administrador</option>										
 									</select>
 								</div>
 							</div>
-						</div>
-						<br>
+						</div>					
 						<div class="">
 							<div class="field control is-grouped-multiline align-buttons">
 								<input type="submit" value="Salvar"
-									class="button is-small is-info is-outlined"> <input
+									class="button is-small is-info is-outlined" onClick="return vazio()"> <input
 									type="submit" value="Cancelar"
 									class="button is-small is-danger is-outlined"
 									onclick="document.getElementById('formUser').action='cadastrarUsuario?action=reset'"
