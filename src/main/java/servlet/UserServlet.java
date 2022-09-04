@@ -139,7 +139,7 @@ public class UserServlet extends HttpServlet {
 						msg = "\n A senha precisa conter pelo menos 6 dígitos!";
 						canInsert = false;
 						
-					} else if (type.equalsIgnoreCase("administrador")) {
+					} if (type.equalsIgnoreCase("administrador")) {
 						msg = "Usuário não pode ser atualizado!";
 						
 

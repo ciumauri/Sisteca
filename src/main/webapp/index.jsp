@@ -35,6 +35,11 @@
 						class="button is-block is-fullwidth is-primary is-medium is-rounded">Login</button>
 				</form>
 				<br>
+				<div class="field">
+						<h3 class="title is-5">Acesso Demo</h3>
+						<h3 class="title is-6">Login: admin</h3>
+						<h3 class="title is-6">Senha: 123456</h3>
+					</div>
 			</div>
 		</div>
 	</section>

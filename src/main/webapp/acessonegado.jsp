@@ -33,7 +33,7 @@
 					</div>
 					<br>
 					<p class="control">
-						<a href="<%=request.getContextPath()%>"
+						<a href="<%=request.getContextPath()%>/LoginServlet?logout=true"
 							class="button is-block is-fullwidth is-primary is-medium is-rounded"> <span
 							class="icon"> <i class="fa fa-sign-out"></i>
 						</span> <span>Sair</span>
