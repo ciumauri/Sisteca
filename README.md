@@ -10,8 +10,8 @@
 
    
 <p align="center">
-   Esse projeto foi desenvolvido na Next Level Week, uma semana intensa de estudos, networking, amizade, trabalho em grupo, acompanhado de um projeto sensacional desenvolvido pela Rocketseat do dia 20 ao dia 27 de Junho.<br>
-   Essa aplicação é um Gerenciamento de Boletos, contendo vários recursos, que em breve serão desenvolvidos. <br>
+   Esse projeto foi desenvolvido com o intuito de validar os conhecimentos adquiridos no decorrer do semestre na matérita Web-III do curso de TADS.<br>
+   Essa aplicação é um Gerenciamento de Livros, contendo vários recursos, que em breve serão desenvolvidos. <br>
 </p>
 
 
@@ -23,8 +23,8 @@
 
    [![Linkedin Badge](https://img.shields.io/static/v1?label=&message=Mauricio&color=0000FF&style=for-the-badge&logo=LinkedIn)](https://www.linkedin.com/in/ciumauri/)
 
-   [![issues](https://img.shields.io/github/issues/ciumauri/payFlow)]()
-   [![issues](https://img.shields.io/github/stars/ciumauri/payFlow)]()
+   [![issues](https://img.shields.io/github/issues/ciumauri/Sisteca)]()
+   [![issues](https://img.shields.io/github/stars/ciumauri/Sisteca)]()
    </div>
 
 
@@ -45,8 +45,18 @@
 <h2 align="center">Layout 🎨</h2>
 
    <p align="center">
-      <img alt="PayFlow" title="Sisteca" src="https://user-images.githubusercontent.com/59374587/122856653-86779c80-d2ed-11eb-8927-8c5433dc37d3.png" />
+      <img alt="PayFlow" title="Sisteca" src="https://github.com/ciumauri/Sisteca/blob/main/.github/sisteca_layout.png" />
    </p>
+   <p align="center">
+      <img alt="PayFlow" title="Sisteca" src="https://github.com/ciumauri/Sisteca/blob/main/.github/sisteca_layout2.png" />
+   </p>
+   <p align="center">
+      <img alt="PayFlow" title="Sisteca" src="https://github.com/ciumauri/Sisteca/blob/main/.github/sisteca_layout3.png" />
+   </p>
+   <p align="center">
+      <img alt="PayFlow" title="Sisteca" src="https://github.com/ciumauri/Sisteca/blob/main/.github/sisteca_layout4.png" />
+   </p>
+
 
 
 <h2 align="center">Funcionalidades 🛠️</h2>
