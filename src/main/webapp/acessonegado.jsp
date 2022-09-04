@@ -43,21 +43,7 @@
 				<br>
 			</div>
 		</div>
-	</section>
-	<section class="section">
-		<div class="section-heading">
-			<img alt="Sisteca" src="assets\img\logo_sisteca.png">
-			<h3 class="title is-2">Erro</h3>
-			<h3 class="title is-4">Acesso negado ao nosso sistema</h3>
-			<p class="control">
-				<a href="<%=request.getContextPath()%>"
-					class="button is-small is-info is-outlined"> <span class="icon">
-						<i class="fa fa-sign-out"></i>
-				</span> <span>Sair</span>
-				</a>
-			</p>
-		</div>
-	</section>
+	</section>	
 	<br>
 </body>
 </html>
